@@ -55,16 +55,6 @@ struct EditFoodView: View {
                     
                     Section(header: Text("Edit Food")) {
                         TextField("\(name)", text: $name)
-                            .onAppear {
-                                name = food.name!
-                                notes = food.notes!
-                                
-                                if let imageData = food.image,
-                                    let image = UIImage(data: imageData) {
-                                    selectedImage = image
-                                }
-
-                            }
                             .padding(.horizontal)
                         TextField("\(notes)", text: $notes)
                             .onAppear {
@@ -83,6 +73,11 @@ struct EditFoodView: View {
                     }.onAppear {
                         name = food.name ?? ""
                         notes = food.notes ?? ""
+                        if let imageData = food.image,
+                            let image = UIImage(data: imageData) {
+                            selectedImage = image
+                        }
+
                     }
             }
     }
